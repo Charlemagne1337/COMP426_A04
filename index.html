@@ -24,7 +24,7 @@
     <script>
         // Function to make API call
         function fetchCoins() {
-            // API endpoint for fetching weather data (example)
+            // API endpoint for fetching data
             const apiUrl = 'https://api.coincap.io/v2/assets';
             let coins = '';
 
@@ -40,7 +40,7 @@
                         Price: data.data[i].priceUsd
                     };
 
-                    // Update the HTML to display weather information
+                    // Update the HTML to display information
                     let coin = document.createElement('div');
                     coin.setAttribute('id', coinInfo.Symbol);
 
@@ -75,7 +75,7 @@
                 });
         }
 
-        // Call the fetchWeather function when the page loads
+        // Call the functions when the page loads
         window.onload = fetchCoins();
         setTimeout(getRates, 500);
         console.log('this goes first');
