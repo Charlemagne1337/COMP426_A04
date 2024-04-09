@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+
+<html>
+    <head>
+        <title>A04: API Usage</title>
+        <script type="module" src="./index.js"></script>
+    </head>
+    <body>
+        <div id="main"></div>
+    </body>
+    
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A04 API Usage</title>
+</head>
+<body>
+    <h1>Coin Information</h1>
+    <div id="coinInfo"></div>
+
+    <script>
+        // Function to make API call
+        function fetchCoins() {
+            // API endpoint for fetching weather data (example)
+            const apiUrl = 'https://api.coincap.io/v2/assets';
+            let coins = '';
+
+            // Make a GET request to the API
+            fetch(apiUrl)
+                .then(response => response.json()) // Parse JSON response
+                .then(data => {
+                    let i = 0;
+                    while (i < 100) {
+                        const coinInfo = {
+                        Coin: data.data[i].id,
+                        Symbol: data.data[i].symbol,
+                        Price: data.data[i].priceUsd
+                    };
+
+                    // Update the HTML to display weather information
+                    let coin = document.createElement('div');
+                    coin.setAttribute('id', coinInfo.Symbol);
+
+                    coin.innerHTML = `
+                        <p>Coin: ${coinInfo.Coin}</p>
+                        <p>Symbol: ${coinInfo.Symbol}</p>
+                        <p>Price Usd: ${coinInfo.Price}</p>
+                    `;
+                    document.getElementById('coinInfo').append(coin);
+                    i = i + 1;
+                }
+                })
+                .catch(error => {
+                    console.error('Error fetching coin data:', error);
+                });
+            }
+        
+        function getRates() {
+            const apiUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json';
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    for (const x in data.eur) {
+                        let X = x.toUpperCase();
+                        if (document.getElementById(X) != null) {
+                            document.getElementById(X).innerHTML = document.getElementById(X).innerHTML + `<p>Price Eur: ${data.eur[x]}`;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching exchange rates:', error);
+                });
+        }
+
+        // Call the fetchWeather function when the page loads
+        window.onload = fetchCoins();
+        setTimeout(getRates, 500);
+        console.log('this goes first');
+    </script>
+</body>
+</html>

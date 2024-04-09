@@ -1,1 +1,1 @@
-# COMP426_A04
+This is the assignment for A04. It is going to be a simple website that uses the CoinCap API to get cryptocurrency rates in USD and the Free Currency Exchange Rates API to be able to to the currency conversion and show you the trading value of those coins in Euros. Not the most advanced thing ever, but it is useful to show the prices for two of the more used currencies in the world without having to go somewhere to convert it.
